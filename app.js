@@ -10,7 +10,13 @@ var users = require('./routes/users');
 
 var app = express();
 
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
+var sockets = require('./socket');
+var chat = io.of('/chat');
+
 // view engine setup
+io.on('connection',sockets);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
@@ -56,5 +62,10 @@ app.use(function(err, req, res, next) {
   });
 });
 
+app.use(function (req,res,next) {
+    res.io = io;
+    next();
+})
 
-module.exports = app;
+
+module.exports = {app:app,server:server};
