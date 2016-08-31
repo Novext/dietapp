@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 var commentSchema = new Schema({
     text : String,
     dietId : String,
-    userId : String
+    userId : String,
     createdAt: {
         type: Date,
         default: new Date()

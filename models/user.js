@@ -9,7 +9,7 @@ var userSchema = new Schema({
     phone: String,
     createdAt:{
         type:String,
-        default: new Date();
+        default: new Date()
     }
 });
 

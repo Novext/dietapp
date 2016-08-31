@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var messageSchema = new Schema({
     text : String,
-    userId : String
+    userId : String,
     createdAt: {
         type:Date,
         default: new Date()
