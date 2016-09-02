@@ -12,11 +12,8 @@ var app = express();
 
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
-var sockets = require('./socket');
-var chat = io.of('/chat');
+io = require('./socket')(io);
 
-// view engine setup
-io.on('connection',sockets);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 

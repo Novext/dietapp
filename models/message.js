@@ -4,10 +4,11 @@ var Schema = mongoose.Schema;
 var messageSchema = new Schema({
     text : String,
     userId : String,
+    chatId: String,
     createdAt: {
         type:Date,
         default: new Date()
-    },
+    }
 });
 
 
