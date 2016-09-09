@@ -42,7 +42,7 @@ module.exports.editAPI = function (req,res){
    });
  });
 };
-//
+/*
  module.export.createAPI = function (req,res){
   var params = req.body;
   var message = new Messages();
@@ -59,3 +59,4 @@ module.exports.editAPI = function (req,res){
    return res.sendStatus(200);
    });
 };
+*/

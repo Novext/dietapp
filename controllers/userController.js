@@ -1,5 +1,9 @@
 var User = require('../models/user');
 
+module.exports.view = function(req, res, next) {
+  res.render('client/register');
+};
+
 module.exports.create = function (req,res){
   var params = req.body;
   var user = new User();
@@ -8,14 +12,16 @@ module.exports.create = function (req,res){
   user.password = params.password;
   user.name = params.name;
   user.lastname = params.lastname;
-  user.phone = params-phone;
+  user.phone = params.phone;
   user.createdAt = Date.now();
 
   user.save(function(err){
     if(err){
       return res.sendStatus(503);
     }
-    return res.sendStatus(200);
+    else {
+        res.redirect('/user/api');
+    }
   });
 };
 

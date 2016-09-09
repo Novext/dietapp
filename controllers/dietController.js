@@ -1,6 +1,9 @@
 var Diets = require('../models/diet');
+module.exports.view = function (req,res){
+  res.render('diet/register');
+};
 
-module.exports.edit = function (){
+module.exports.edit = function (req,res){
   var params = req.body;
   var id = mongoose.Types.ObjectId(req.params.id);
 
@@ -21,7 +24,7 @@ module.exports.edit = function (){
   });
 };
 
-module.export.create = function (){
+module.exports.create = function (req,res){
   var params = req.body;
   var diet = new Diets();
 
@@ -32,14 +35,13 @@ module.export.create = function (){
   diet.date = params.date;
   diet.dietId = params.dietId;
   diet.userId = params.userId;
-  diet.createdOn = Date.now();
 
   diet.save(function(err,user){
     if(err){
       console.log(err);
       return res.sendStatus(503);
     }
-    return res.sendStatus(200);
+    return res.redirect('/dieta/diet/api');
   });
 };
 

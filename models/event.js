@@ -9,4 +9,4 @@ var eventSchema = new Schema({
         type:Date,
         default: new Date()
     }
-})
+});

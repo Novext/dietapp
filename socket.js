@@ -1,4 +1,4 @@
-
+/*
 var chatController = require('./controllers/chatController');
 var messageController = require('./controllers/messageController');
 
@@ -39,3 +39,4 @@ module.exports = function (io) {
 
     return io;
 }
+*/
