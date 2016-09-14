@@ -13,10 +13,10 @@ var userModel = require('./models/user');
 var dietModel = require('./models/diet');
 var config = require('./config');
 var mongoose = require('mongoose');
+var api = require('./routes/api');
 
-mongoose.connect(config.db.host, function(err){
+mongoose.connect('mongodb://dbmaster:dbmaster123456@ds029496.mlab.com:29496/dietapp', function(err){
   if(err) throw console.error('Conecto a la base de datos');
-  console.log('Conectado a ',config.db.host);
 });
 var server = require('http').Server(app);
 //var io = require('./socket')(io);
@@ -35,6 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/usuario', users);
 app.use('/dieta', diet);
+app.use('/api',api);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

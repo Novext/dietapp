@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 
 var diet = require('./diet');
-var client = require('./users');
 
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
