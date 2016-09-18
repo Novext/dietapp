@@ -1,28 +1,6 @@
 var Messages = require('../models/message');
 
 
-
-
-
-// module.exports.edit = function (params) {
-//   var params = req.body;
-//
-//   Messages.findOne({ _id: req.params.id}, function(err,user){
-//     if(err) return res.sendStatus(503);
-//     if(!user) return res.sendStatus(503);
-//     console.log(user.userId);
-//     user.text = params.text;
-//     user.save(function(err){
-//       if(err){
-//         console.log(err);
-//         return res.sendStatus(503);
-//       }
-//       return res.redirect('/message');
-//     });
-//   });
-// };
-
-
 module.exports.editAPI = function (req,res){
   var params = req.body;
  var id = mongoose.Types.ObjectId(req.params.id);

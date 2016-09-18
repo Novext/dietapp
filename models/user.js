@@ -7,6 +7,7 @@ var userSchema = new Schema({
     name: String,
     lastname: String,
     phone: String,
+    socialId : String,
     createdAt:{ type: Date, default: Date.now},
     //dietFavorites: [String],
 });

@@ -11,5 +11,4 @@ var commentSchema = new Schema({
     }
 });
 
-
 module.exports = mongoose.model('Comments',commentSchema);

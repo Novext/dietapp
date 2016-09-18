@@ -1,6 +1,18 @@
 var Diets = require('../models/diet');
-module.exports.view = function (req,res){
-  res.render('diet/register');
+var mongoose = require('mongoose');
+
+module.exports.getOne = function (req,res){
+    var id = mongoose.Types.ObjectId(req.params.id);
+    Diets.findOne({_id: id
+    }, function(err,diet){
+      if(err)
+      {
+        console.log(err);
+        return res.sendStatus(503);
+      }
+      return res.json(diet);
+    });
+
 };
 
 module.exports.edit = function (req,res){
@@ -8,16 +20,16 @@ module.exports.edit = function (req,res){
   var id = mongoose.Types.ObjectId(req.params.id);
 
   Diets.findOne({_id: id
-  }, function(err,user){
+  }, function(err,diet){
     if(err)
     {
       console.log(err);
       return res.sendStatus(503);
     }
-    user.title = params.title;
-    user.description = params.description;
-    user.preparation = params.preparation;
-    user.save(function(err){
+    diet.title = params.title;
+    diet.description = params.description;
+    diet.preparation = params.preparation;
+    diet.save(function(err){
       if(err) return res.sendStatus(503);
       else return res.sendStatus(200);
     });
@@ -31,8 +43,6 @@ module.exports.create = function (req,res){
   diet.title = params.title;
   diet.description = params.description;
   diet.preparation = params.preparation;
-  diet.ingredients = params.ingredients;
-  diet.date = params.date;
   diet.dietId = params.dietId;
   diet.userId = params.userId;
 
@@ -45,45 +55,17 @@ module.exports.create = function (req,res){
   });
 };
 
-// module.exports.editAPI = function (){
-//   var params = req.body;
-//   var id = mongoose.Types.ObjectId(req.params.id);
-//
-//   Diets.findOne({_id: id
-//   }, function(err,user){
-//     if(err)
-//     {
-//       console.log(err);
-//       return res.sendStatus(503);
-//     }
-//     user.title = params.title;
-//     user.description = params.description;
-//     user.preparation = params.preparation;
-//     user.save(function(err){
-//       if(err) return res.sendStatus(503);
-//       else return res.sendStatus(200);
-//     });
-//   });
-// };
-//
-// module.export.createAPI = function (){
-//   var params = req.body;
-//   var diet = new Diets();
-//
-//   diet.title = params.title;
-//   diet.description = params.description;
-//   diet.preparation = params.preparation;
-//   //user.
-//   //user.date = params.date;
-//   //user.dietId = params.dietId;
-//   //user.userId = params.userId;
-//   diet.createdOn = Date.now();
-//
-//   diet.save(function(err,user){
-//     if(err){
-//       console.log(err);
-//       return res.sendStatus(503);
-//     }
-//     return res.sendStatus(200);
-//   });
-// };
+module.exports.search  = function (req,res) {
+
+    var q = req.query.q;
+
+    var params  = {
+        title : new RegExp(q,i),
+        description: new RegExp(q,i)
+    }
+
+    Diets.find(params,function (err,diets) {
+        if(err) return res.sendStatus(503);
+        return res.json(diets);
+    })
+}

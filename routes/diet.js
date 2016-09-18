@@ -2,10 +2,11 @@ var express = require('express');
 var router = express.Router();
 var dietController = require('../controllers/dietController');
 
-router.route('/diet/api')
-  .get(dietController.view)
+router.route('/')
+  .get(dietController.getOne)
   .post(dietController.create);
-router.route('/diet/:id/api')
+
+router.route('/:id')
   .get(dietController.edit);
 
-  module.exports = router;
+module.exports = router;

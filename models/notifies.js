@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var eventSchema = new Schema({
+var notifySchema = new Schema({
     start: Date,
     end: Date,
     subject: String,
@@ -11,4 +11,4 @@ var eventSchema = new Schema({
     }
 });
 
-module.exports = Schema.model('Events',eventSchema);
+module.exports = mongoose.model('Notifies',notifySchema);
